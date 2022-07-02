@@ -1,6 +1,8 @@
 #include <iostream>
 #include <typeinfo>
 #include <string>
+#include <iomanip>
+
 
 using namespace std;
 
@@ -12,6 +14,21 @@ class jh_stack {
 private:
     int top = -1;
     T *stack_ptr = NULL;
+
+    int search_longest_length() {
+        int i = 0;
+        int max = 0;
+        string str_var;
+
+        for (; i < top; i++) {
+            str_var = to_string(stack_ptr[i]);
+            if (max < str_var.size()) {
+                max = str_var.size();
+            }
+        }
+
+        return max;
+    }
 
 public:
     jh_stack () {
@@ -25,14 +42,19 @@ public:
 
    void print_stack() {
        int idx;
+       int max_width = search_longest_length();
+
        cout << "##### Stack Status" << endl;
 
+        cout << left << setw(3) << "idx"  << "|"
+             << setw(max_width) << "element" << endl;
         for (idx = top; idx >= 0; idx--) {
-            cout << right << stack_ptr[idx] << endl;
+            cout << left << setw(3) << idx  << "|"
+                 << setw(max_width) << to_string(stack_ptr[idx]) << endl;
         }
         cout << endl;
-
    }
+
    int push(T data) {
        if (top - 1 > MAX_ELEMENT) {
            cout << "ERROR PUSH: Too many element in Stack!" << endl;
@@ -56,9 +78,7 @@ public:
 };
 
 
-int main(int argc, char **argv)
-{
-    cout << "Hello World" << endl;
+void check_INT() {
     jh_stack<int> int_stack;
 
     int_stack.push(1);
@@ -66,20 +86,38 @@ int main(int argc, char **argv)
     int_stack.push(3);
     int_stack.push(4);
 
-    cout << "POP: " << int_stack.pop() << endl;
-    cout << "POP: " << int_stack.pop() << endl;
-    cout << "POP: " << int_stack.pop() << endl;
-    cout << "POP: " << int_stack.pop() << endl;
+    int_stack.print_stack();
 
-/*
-{
-    double test = 332.322;
-    cout << "test: " << to_string(test) << endl;
-    cout << "length: " << to_string(test).size() << endl;
+    cout << "POP: " << int_stack.pop() << endl;
+    cout << "POP: " << int_stack.pop() << endl;
+    cout << "POP: " << int_stack.pop() << endl;
+    cout << "POP: " << int_stack.pop() << endl;
 }
-*/
+
+void check_DOUBLE() {
+    jh_stack<double> double_stack;
+    double_stack.push(1);
+    double_stack.push(1.00);
+    double_stack.push(-1.93);
+    double_stack.push(10.93000009);
+
+    double_stack.print_stack();
+    
+    cout << "POP: " << double_stack.pop() << endl;
+    cout << "POP: " << double_stack.pop() << endl;
+    cout << "POP: " << double_stack.pop() << endl;
+    cout << "POP: " << double_stack.pop() << endl;
+
+}
+
+int main(int argc, char **argv)
+{
+    cout << "Hello World" << endl;
+    check_INT();
+
+    cout << endl  << endl;
+    check_DOUBLE();
+
     cout << "Bye!" << endl;
     return 0;
 }
-
-
