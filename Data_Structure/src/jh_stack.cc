@@ -44,7 +44,7 @@ public:
        int idx;
        int max_width = search_longest_length();
 
-       cout << "##### Stack Status" << endl;
+       cout << "### Stack Status" << endl;
 
         cout << left << setw(3) << "idx"  << "|"
              << setw(max_width) << "element" << endl;
@@ -53,6 +53,13 @@ public:
                  << setw(max_width) << to_string(stack_ptr[idx]) << endl;
         }
         cout << endl;
+   }
+
+   bool isEmpty() {
+     if (top == -1) 
+       return true;
+     else
+       return false;
    }
 
    int push(T data) {
@@ -64,8 +71,9 @@ public:
        stack_ptr[++top] = data;
        return 0;
    }
+
    T pop() {
-       if (top < 0) {
+       if (isEmpty() == true) {
            cout << "Stack have no element!" << endl;
            return -1;
        }
@@ -75,49 +83,66 @@ public:
 
        return data;
    }
-};
 
+   T peek() {
+     if (isEmpty() == true) {
+       cout << "Stack have no element!" << endl;
+       return -1;
+     }
+
+     T data = stack_ptr[top];
+
+     return data;
+   }
+
+};
 
 void check_INT() {
     jh_stack<int> int_stack;
 
     int_stack.push(1);
     int_stack.push(2);
-    int_stack.push(3);
+    int_stack.push(-1);
     int_stack.push(4);
 
     int_stack.print_stack();
 
+    cout << "isEmpty: " << int_stack.isEmpty() << endl;
+    cout << "TOP: " << int_stack.peek() << endl;
     cout << "POP: " << int_stack.pop() << endl;
     cout << "POP: " << int_stack.pop() << endl;
     cout << "POP: " << int_stack.pop() << endl;
     cout << "POP: " << int_stack.pop() << endl;
+    cout << "isEmpty: " << int_stack.isEmpty() << endl;
 }
 
 void check_DOUBLE() {
     jh_stack<double> double_stack;
+
     double_stack.push(1);
     double_stack.push(1.00);
     double_stack.push(-1.93);
     double_stack.push(10.93000009);
 
     double_stack.print_stack();
-    
+    cout << "isEmpty: " <<double_stack.isEmpty() << endl;
+    cout << "TOP: " << double_stack.peek() << endl;
     cout << "POP: " << double_stack.pop() << endl;
     cout << "POP: " << double_stack.pop() << endl;
     cout << "POP: " << double_stack.pop() << endl;
     cout << "POP: " << double_stack.pop() << endl;
 
+    cout << "isEmpty: " <<double_stack.isEmpty() << endl;
 }
 
 int main(int argc, char **argv)
 {
-    cout << "Hello World" << endl;
+    cout << "###### Hello World" << endl;
     check_INT();
 
     cout << endl  << endl;
     check_DOUBLE();
 
-    cout << "Bye!" << endl;
+    cout << "###### Bye!" << endl;
     return 0;
 }
