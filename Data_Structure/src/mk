@@ -1,6 +1,8 @@
 #!/bin/bash
 
-g++ jh_stack.cc -o jh_stack.exe
+COMPILE_FLAG="-g"
+
+g++  jh_stack.cc ${COMPILE_FLAG} -o jh_stack.exe
 
 if [ $? -eq 0 ]; then
 	./jh_stack.exe
@@ -9,3 +11,22 @@ else
 	echo "Compile Failed..."
 	echo "Check out your code"
 fi
+
+gcc  jh_queue.c ${COMPILE_FLAG} -o jh_queue
+if [ $? -eq 0 ]; then
+	./jh_queue
+else
+	echo
+	echo "Compile Failed..."
+	echo "Check out your code"
+fi
+
+gcc jh_singly_linked_list.c ${COMPILE_FLAG} -o jh_singly_linked_list
+if [ $? -eq 0 ]; then
+	./jh_singly_linked_list
+else
+	echo
+	echo "Compile Failed..."
+	echo "Check out your code"
+fi
+
