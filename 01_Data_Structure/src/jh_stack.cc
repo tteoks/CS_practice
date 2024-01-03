@@ -100,9 +100,13 @@ public:
 void check_INT() {
     jh_stack<int> int_stack;
 
+    cout << "PUSH INT: 1" << endl;
     int_stack.push(1);
+    cout << "PUSH INT: 2" << endl;
     int_stack.push(2);
+    cout << "PUSH INT: -1" << endl;
     int_stack.push(-1);
+    cout << "PUSH INT: 4" << endl;
     int_stack.push(4);
 
     int_stack.print_stack();
@@ -119,9 +123,13 @@ void check_INT() {
 void check_DOUBLE() {
     jh_stack<double> double_stack;
 
+    cout << "PUSH DOUBLE: 1" << endl;
     double_stack.push(1);
+    cout << "PUSH DOUBLE: 1.00" << endl;
     double_stack.push(1.00);
+    cout << "PUSH DOUBLE: -1.93" << endl;
     double_stack.push(-1.93);
+    cout << "PUSH DOUBLE: 10.93000009" << endl;
     double_stack.push(10.93000009);
 
     double_stack.print_stack();

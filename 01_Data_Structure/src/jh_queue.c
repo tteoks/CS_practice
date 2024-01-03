@@ -103,6 +103,36 @@ int deQueue(Queue *queue) {
   return rc;
 }
 
+/*
+Available colors
+  0: RED
+  1: GREEN
+  2: YELLOW
+  3: BLUE
+  \033[0m
+ */
+void color_print(int color, char *text) {
+  char color_str[8];
+
+  switch(color) {
+    case 0:
+      snprintf(color_str, 8, "\033[91m");
+      break;
+    case 1:
+      snprintf(color_str, 8, "\033[92m");
+      break;
+    case 2:
+      snprintf(color_str, 8, "\033[93m");
+      break;
+    case 3:
+      snprintf(color_str, 8, "\033[94m");
+      break;
+  }
+
+  printf("%s%s\033[0m\n", color_str, text);
+
+}
+
 
 int main(int argc, char **argv)
 {
@@ -110,15 +140,22 @@ int main(int argc, char **argv)
   Queue queue;
   initQueue(&queue);
 
+  printf("\033[92m[Enqueue] %d\033[0m\n", 1);
   enQueue(&queue, 1);
+  
+  printf("\033[92m[Enqueue] %d\033[0m\n", 2);
   enQueue(&queue, 2);
+  printf("\033[93m[Dequeue] %d\033[0m\n", deQueue(&queue));
+
+  printf("\033[92m[Enqueue] %d\033[0m\n", 3);
   enQueue(&queue, 3);
+  printf("\033[93m[Dequeue] %d\033[0m\n", deQueue(&queue));
+
+  printf("\033[92m[Enqueue] %d\033[0m\n", 4);
   enQueue(&queue, 4);
 
-  printf("Dequeue: %d\n", deQueue(&queue));
-  printf("Dequeue: %d\n", deQueue(&queue));
-  printf("Dequeue: %d\n", deQueue(&queue));
-  printf("Dequeue: %d\n", deQueue(&queue));
+  printf("\033[93m[Dequeue] %d\033[0m\n", deQueue(&queue));
+  printf("\033[93m[Dequeue] %d\033[0m\n", deQueue(&queue));
 
   return 0;
 }

@@ -2,7 +2,7 @@
 
 COMPILE_FLAG="-g"
 
-g++  jh_stack.cc ${COMPILE_FLAG} -o jh_stack.exe
+g++  jh_stack.cc ${COMPILE_FLAG} -o jh_stack
 
 if [ $? -eq 0 ]; then
 	./jh_stack.exe
