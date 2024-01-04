@@ -3,7 +3,6 @@
 COMPILE_FLAG="-g"
 
 g++  jh_stack.cc ${COMPILE_FLAG} -o jh_stack
-
 if [ $? -eq 0 ]; then
 	./jh_stack.exe
 else
@@ -24,6 +23,15 @@ fi
 gcc jh_singly_linked_list.c ${COMPILE_FLAG} -o jh_singly_linked_list
 if [ $? -eq 0 ]; then
 	./jh_singly_linked_list
+else
+	echo
+	echo "Compile Failed..."
+	echo "Check out your code"
+fi
+
+gcc jh_search.c ${COMPILE_FLAG} -o jh_search
+if [ $? -eq 0 ]; then
+	./jh_search
 else
 	echo
 	echo "Compile Failed..."
