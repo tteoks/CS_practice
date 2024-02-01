@@ -38,3 +38,14 @@ else
 	echo "Check out your code"
 fi
 
+gcc jh_doubly_linked_list.c ${COMPILE_FLAG} -o jh_doubly_linked_list
+if [ $? -eq 0 ]; then
+	./jh_doubly_linked_list
+else
+	echo
+	echo "Compile Failed..."
+	echo "Check out your code"
+fi
+
+
+

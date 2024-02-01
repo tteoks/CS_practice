@@ -131,7 +131,7 @@ void perf_search_func(int *arr, int arr_num, int search, int (*func)(int *,int,i
 }
 
 int binary_search_tree() {
-    // Implement after study tree data structure
+    // TODO: Implement after study tree data structure
     return -1;
 }
 
