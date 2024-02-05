@@ -47,5 +47,12 @@ else
 	echo "Check out your code"
 fi
 
-
+gcc jh_deque.c ${COMPILE_FLAG} -o jh_deque
+if [ $? -eq 0 ]; then
+	./jh_deque
+else
+	echo
+	echo "Compile Failed..."
+	echo "Check out your code"
+fi
 
