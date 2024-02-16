@@ -4,7 +4,7 @@
 #include <math.h>
 
 typedef struct _radix_queue {
-  int bucket[128];
+  int bucket[2048];
   int radix;
   int count;
 } radix_queue;

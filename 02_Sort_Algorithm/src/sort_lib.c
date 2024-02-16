@@ -88,7 +88,7 @@ void quick_sort(int *array, int left, int right) {
 
 void merge_for_merge_sort(int *array, int left, int mid, int right) {
   int i, j, k;
-  int sorted_array[1024] = {0, };
+  int sorted_array[8162] = {0, };
 
   k = left;  i = left; j = mid + 1;
 
@@ -161,7 +161,7 @@ void heapify(int *array, int len) {
 
 void heap_sort(int *array, int len)
 {
-  int heap_array[1024];
+  int heap_array[8162];
   int *heap_ptr;
   int i;
 
@@ -236,7 +236,7 @@ int flush_radix(radix_queue *queue, int *array) {
 void radix_sort(int *array, int len) {
   radix_queue queue[10];
   int i, j, rc, tmp, round = 0;
-  int loop = 3;
+  int loop = 4;
   int *pos;
 
   for (i = 0; i < 10; i++) {
@@ -287,6 +287,5 @@ void radix_sort(int *array, int len) {
     }
     round++;
   }
-
 }
 
