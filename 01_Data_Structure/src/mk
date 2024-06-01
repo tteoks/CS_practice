@@ -1,58 +1,84 @@
 #!/bin/bash
 
 COMPILE_FLAG="-g"
+OUTPUT_FILE="standard.log"
+cat /dev/null > ${OUTPUT_FILE}
 
-g++  jh_stack.cc ${COMPILE_FLAG} -o jh_stack
-if [ $? -eq 0 ]; then
-	./jh_stack.exe
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
+CPP_SRC_FILES=(
+  "jh_stack.cc"
+)
 
-gcc  jh_queue.c ${COMPILE_FLAG} -o jh_queue
-if [ $? -eq 0 ]; then
-	./jh_queue
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
+:<<"END"
+C_SRC_FILES=(
+  "jh_queue.c"
+  "jh_deque.c"
+  "jh_singly_linked_list.c"
+  "jh_doubly_linked_list.c"
+  "jh_search.c"
+  "jh_heap.c"
 
-gcc jh_singly_linked_list.c ${COMPILE_FLAG} -o jh_singly_linked_list
-if [ $? -eq 0 ]; then
-	./jh_singly_linked_list
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
+  )
+END
 
-gcc jh_search.c ${COMPILE_FLAG} -o jh_search
-if [ $? -eq 0 ]; then
-	./jh_search
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
+C_SRC_FILES=(
+  "jh_heap.c"
+  )
 
-gcc jh_doubly_linked_list.c ${COMPILE_FLAG} -o jh_doubly_linked_list
-if [ $? -eq 0 ]; then
-	./jh_doubly_linked_list
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
 
-gcc jh_deque.c ${COMPILE_FLAG} -o jh_deque
-if [ $? -eq 0 ]; then
-	./jh_deque
-else
-	echo
-	echo "Compile Failed..."
-	echo "Check out your code"
-fi
+function c_compile_and_exec () {
+  SRC_NAME="${1}"
+  EXEC_NAME="${SRC_NAME%\.c}"
+
+  echo "################################"
+  echo "Compile Target: ${SRC_NAME}"
+  echo "Binary: ${EXEC_NAME}"
+  echo "################################"
+
+  echo "#### Compile Log: ${SRC_NAME}" >> ${OUTPUT_FILE}
+  gcc ${SRC_NAME} ${COMPILE_FLAG} -o ${EXEC_NAME} >> ${OUTPUT_FILE} 2>&1 
+  echo "" >> ${OUTPUT_FILE}
+
+  if [ $? -eq 0 ]; then
+    ./${EXEC_NAME}
+  else
+    echo
+    echo "Compile Failed..."
+    echo "Check out your code"
+  fi
+  echo ""
+
+}
+
+function cpp_compile_and_exec () {
+  SRC_NAME="${1}"
+  EXEC_NAME="${SRC_NAME%\.cc}"
+
+  echo "################################"
+  echo "Compile Target: ${SRC_NAME}"
+  echo "Binary: ${EXEC_NAME}"
+  echo "################################"
+
+  echo "#### Compile Log: ${SRC_NAME}" >> ${OUTPUT_FILE}
+  g++  ${SRC_NAME} ${COMPILE_FLAG} -o ${EXEC_NAME} >> ${OUTPUT_FILE} 2>&1 
+  echo "" >> ${OUTPUT_FILE}
+
+  if [ $? -eq 0 ]; then
+    ./${EXEC_NAME}
+  else
+    echo
+    echo "Compile Failed..."
+    echo "Check out your code"
+  fi
+
+  echo ""
+
+}
+
+for FILE in ${CPP_SRC_FILES[@]}; do
+  cpp_compile_and_exec ${FILE}
+done
+
+for FILE in ${C_SRC_FILES[@]}; do
+  c_compile_and_exec ${FILE}
+done
 
