@@ -16,12 +16,13 @@ C_SRC_FILES=(
   "jh_doubly_linked_list.c"
   "jh_search.c"
   "jh_heap.c"
+  "jh_binary_search_tree.c"
 
   )
 END
 
 C_SRC_FILES=(
-  "jh_heap.c"
+  "jh_binary_search_tree.c"
   )
 
 
