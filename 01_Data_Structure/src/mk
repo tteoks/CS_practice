@@ -22,9 +22,8 @@ C_SRC_FILES=(
 END
 
 C_SRC_FILES=(
-  "jh_binary_search_tree.c"
-  )
-
+  "jh_priority_queue.c"
+)
 
 function c_compile_and_exec () {
   SRC_NAME="${1}"
@@ -37,7 +36,6 @@ function c_compile_and_exec () {
 
   echo "#### Compile Log: ${SRC_NAME}" >> ${OUTPUT_FILE}
   gcc ${SRC_NAME} ${COMPILE_FLAG} -o ${EXEC_NAME} >> ${OUTPUT_FILE} 2>&1 
-  echo "" >> ${OUTPUT_FILE}
 
   if [ $? -eq 0 ]; then
     ./${EXEC_NAME}
@@ -46,8 +44,9 @@ function c_compile_and_exec () {
     echo "Compile Failed..."
     echo "Check out your code"
   fi
-  echo ""
 
+  echo "" >> ${OUTPUT_FILE}
+  echo ""
 }
 
 function cpp_compile_and_exec () {
@@ -61,7 +60,6 @@ function cpp_compile_and_exec () {
 
   echo "#### Compile Log: ${SRC_NAME}" >> ${OUTPUT_FILE}
   g++  ${SRC_NAME} ${COMPILE_FLAG} -o ${EXEC_NAME} >> ${OUTPUT_FILE} 2>&1 
-  echo "" >> ${OUTPUT_FILE}
 
   if [ $? -eq 0 ]; then
     ./${EXEC_NAME}
@@ -71,8 +69,8 @@ function cpp_compile_and_exec () {
     echo "Check out your code"
   fi
 
+  echo "" >> ${OUTPUT_FILE}
   echo ""
-
 }
 
 for FILE in ${CPP_SRC_FILES[@]}; do

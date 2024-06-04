@@ -7,16 +7,6 @@ typedef struct _Node {
   struct _Node *right;
 } Node;
 
-
-void swapNode(Node *a, Node *b) {
-  Node *tmpNode;
-
-  tmpNode = a;
-  a = b;
-  b = tmpNode;
-}
-
-
 Node *newNode(int data) {
   Node *tmpNode = malloc(sizeof(Node));
 
