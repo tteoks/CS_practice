@@ -17,12 +17,16 @@ C_SRC_FILES=(
   "jh_search.c"
   "jh_heap.c"
   "jh_binary_search_tree.c"
+  "jh_priority_queue.c"
+  "jh_hashmap.c"
+  "jh_hashmap_linked.c"
 
   )
 END
 
 C_SRC_FILES=(
-  "jh_priority_queue.c"
+  "jh_graph_array.c"
+  "jh_graph_list.c"
 )
 
 function c_compile_and_exec () {
